@@ -1,3 +1,4 @@
+module TheSmallestDifference
 #! /usr/bin/ruby
 
 # Get The Weather Data
@@ -5,7 +6,12 @@
 class Weather
    def self.smallest_temperature_spread
      #open the file to get the data
-     weather_data = File.open 'w_data.dat', 'r'
+     begin
+     weather_data = File.open 'w_data.dat', 'r' 
+     rescue =>e
+      puts e
+     
+     end
      #find the first occurance of column Dy
      first = weather_data.gets.split[0] until first == 'Dy'   
      min_diff = 1000  
@@ -34,7 +40,12 @@ end
 #Get Soccer Data  
 class Soccer
 def self.smallest_soccer_spread
+  begin
   soccer_data = File.open 'soccer.dat', 'r' 
+  rescue => e
+    puts e
+  
+  end
   first = soccer_data.gets.split[0] until first == 'Team'
   minimum_spread = 1000
   while not soccer_data.eof?
@@ -58,7 +69,11 @@ end
  
  #accepts a filename, header name, column name , first and second column names
 def dry_method filename, heading_1, column_name, column_1, column_2
+  begin
   file = File.open filename, 'r'
+  rescue => e
+  puts e
+  end
   first = file.gets.split[0] until first == heading_1
   minimum_spread = 1000
   while not file.eof?
@@ -81,7 +96,7 @@ Weather.smallest_temperature_spread
 
 Soccer.smallest_soccer_spread
 
-
+end
 
 
 #testing scripts
