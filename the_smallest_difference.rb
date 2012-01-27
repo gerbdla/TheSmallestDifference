@@ -36,7 +36,7 @@ class Weather
 end
 end
 
-#The first second program is almost exactly the same logic as the first below I will DRY is up for you
+#The first second program is almost exactly the same logic as the first below I will DRY it up for you
 #Get Soccer Data  
 class Soccer
 def self.smallest_soccer_spread
@@ -66,9 +66,9 @@ def self.smallest_soccer_spread
 end
 end
 
- 
+class DRY
  #accepts a filename, header name, column name , first and second column names
-def dry_method filename, heading_1, column_name, column_1, column_2
+def self.dry_method filename, heading_1, column_name, column_1, column_2
   begin
   file = File.open filename, 'r'
   rescue => e
@@ -89,7 +89,7 @@ def dry_method filename, heading_1, column_name, column_1, column_2
   puts "Min spread is #{minimum_spread}, for #{minimum_item}"
 
 end
-   
+end 
 #call the two different objects before dry  
 
 Weather.smallest_temperature_spread  
@@ -105,12 +105,12 @@ require 'test/unit'
 class GerberdataIndyMacTest < Test::Unit::TestCase
 
   def test_weather_case
-    assert_equal dry_method('w_data.dat', 'Dy', 0, 1, 2), Weather.smallest_temperature_spread,
+    assert_equal DRY.dry_method('w_data.dat', 'Dy', 0, 1, 2), Weather.smallest_temperature_spread,
                  'Oh boy something didn\'t work quite right for the weather case'
   end
 
   def test_soccer_case
-    assert_equal dry_method('soccer.dat', 'Team', 1, 6, 8), Soccer.smallest_soccer_spread,
+    assert_equal DRY.dry_method('soccer.dat', 'Team', 1, 6, 8), Soccer.smallest_soccer_spread,
                  'oh boy something didn\'t work quite right for the soccer case'
 
   end
